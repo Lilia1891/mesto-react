@@ -1,14 +1,4 @@
-function Main() {
-  const handleEditAvatarClick = () => {
-    document.querySelector(".popup_avatar").classList.add("popup_opened");
-  };
-  const handleEditProfileClick = () => {
-    document.querySelector(".popup_profile").classList.add("popup_opened");
-  };
-  const handleAddPlaceClick = () => {
-    document.querySelector(".popup_add-card").classList.add("popup_opened");
-  };
-
+function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
   return (
     <>
       <div className="profile">
@@ -16,7 +6,7 @@ function Main() {
           <img src="" alt="Аватар профиля" className="profile__avatar" />
           <button
             className="profile__avatar-change"
-            onClick={handleEditAvatarClick}
+            onClick={() => onEditAvatar(true)}
           ></button>
           <div className="profile__info">
             <div className="profile__info-container">
@@ -24,7 +14,7 @@ function Main() {
               <button
                 type="button"
                 className="profile__avatar-edit-button"
-                onClick={handleEditProfileClick}
+                onClick={() => onEditProfile(true)}
               ></button>
             </div>
             <p className="profile__info-occupation">Мореплаватель</p>
@@ -33,7 +23,7 @@ function Main() {
         <button
           type="button"
           className="profile__info-add-button"
-          onClick={handleAddPlaceClick}
+          onClick={() => onAddPlace(true)}
         ></button>
       </div>
       <div className="gallery">

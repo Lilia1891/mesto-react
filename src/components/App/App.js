@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header.js";
 import Footer from "../../components/Footer.js";
 import Main from "../../components/Main.js";
@@ -6,12 +6,23 @@ import PopupWithForm from "../../components/PopupWithForm.js";
 import PopupWithImage from "../../components/PopupWithImage.js";
 
 function App() {
+  const [isEditAvatarPopupOpen, handleEditAvatarClick] = useState(false);
+  const [isEditProfilePopupOpen, handleEditProfileClick] = useState(false);
+  const [isAddPlacePopupOpen, handleAddPlaceClick] = useState(false);
   return (
     <div className="page">
       <Header />
-      <Main />
+      <Main
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}
+      />
       <Footer />
-      <PopupWithForm name="avatar" title="Обновить аватар">
+      <PopupWithForm
+        name="avatar"
+        title="Обновить аватар"
+        isOpen={isEditAvatarPopupOpen}
+      >
         <input
           type="url"
           name="avatar"
@@ -22,7 +33,11 @@ function App() {
         />
         <span className="popup__input-error popup__input-error_avatar"></span>
       </PopupWithForm>
-      <PopupWithForm name="profile" title="Редактировать профиль">
+      <PopupWithForm
+        name="profile"
+        title="Редактировать профиль"
+        isOpen={isEditProfilePopupOpen}
+      >
         <input
           className="popup__input popup__input_type_name"
           type="text"
@@ -47,7 +62,11 @@ function App() {
         />
         <span className="popup__input-error popup__input-error_job"></span>
       </PopupWithForm>
-      <PopupWithForm name="add-card" title="Новое место">
+      <PopupWithForm
+        name="add-card"
+        title="Новое место"
+        isOpen={isAddPlacePopupOpen}
+      >
         <input
           className="popup__input popup__input_type_place"
           type="text"
