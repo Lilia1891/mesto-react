@@ -3,6 +3,7 @@ import Header from "../../components/Header.js";
 import Footer from "../../components/Footer.js";
 import Main from "../../components/Main.js";
 import PopupWithForm from "../../components/PopupWithForm.js";
+import PopupWithImage from "../../components/PopupWithImage.js";
 
 function App() {
   return (
@@ -73,13 +74,7 @@ function App() {
         {" "}
       </PopupWithForm>
 
-      <div className="popup popup_view-image">
-        <figure className="popup__figure">
-          <img className="popup__image" src="#" alt="" />
-          <figcaption className="popup__image-title"></figcaption>
-          <button className="popup__close-button" type="button"></button>
-        </figure>
-      </div>
+      <PopupWithImage />
 
       <template className="template-elements">
         <li className="gallery__element">
