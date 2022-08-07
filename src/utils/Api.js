@@ -68,6 +68,14 @@ export class Api {
       }),
     }).then(this._getResponseData);
   }
-
-  // другие методы работы с API
 }
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-45",
+  headers: {
+    authorization: "636cc495-c287-427c-9f35-3c6c6a44b827",
+    "Content-Type": "application/json",
+  },
+});
+
+export default api;

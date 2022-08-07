@@ -1,9 +1,23 @@
+import React from "react";
+import api from "../utils/Api.js";
+
 function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
+  const [userAvatar, setUserAvatar] = React.useState("");
+  React.useEffect(() => {
+    api.getUserInfo().then((res) => {
+      setUserAvatar(res.avatar);
+    });
+  });
+
   return (
     <>
       <div className="profile">
         <div className="profile__box">
-          <img src="" alt="Аватар профиля" className="profile__avatar" />
+          <img
+            src={userAvatar}
+            alt="Аватар профиля"
+            className="profile__avatar"
+          />
           <button
             className="profile__avatar-change"
             onClick={() => onEditAvatar(true)}
