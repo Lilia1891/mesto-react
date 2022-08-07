@@ -6,9 +6,16 @@ import PopupWithForm from "../../components/PopupWithForm.js";
 import PopupWithImage from "../../components/PopupWithImage.js";
 
 function App() {
-  const [isEditAvatarPopupOpen, handleEditAvatarClick] = useState(false);
-  const [isEditProfilePopupOpen, handleEditProfileClick] = useState(false);
-  const [isAddPlacePopupOpen, handleAddPlaceClick] = useState(false);
+  const [isEditAvatarPopupOpen, handleEditAvatarClick] = React.useState(false);
+  const [isEditProfilePopupOpen, handleEditProfileClick] =
+    React.useState(false);
+  const [isAddPlacePopupOpen, handleAddPlaceClick] = React.useState(false);
+  const closeAllPopups = () => {
+    handleEditAvatarClick(false);
+    handleEditProfileClick(false);
+    handleAddPlaceClick(false);
+  };
+
   return (
     <div className="page">
       <Header />
@@ -22,6 +29,7 @@ function App() {
         name="avatar"
         title="Обновить аватар"
         isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
       >
         <input
           type="url"
@@ -37,6 +45,7 @@ function App() {
         name="profile"
         title="Редактировать профиль"
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
       >
         <input
           className="popup__input popup__input_type_name"
@@ -66,6 +75,7 @@ function App() {
         name="add-card"
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
       >
         <input
           className="popup__input popup__input_type_place"
@@ -89,7 +99,11 @@ function App() {
         />
         <span className="popup__input-error popup__input-error_link"></span>
       </PopupWithForm>
-      <PopupWithForm name="confirm" title="Вы уверены?">
+      <PopupWithForm
+        name="confirm"
+        title="Вы уверены?"
+        onClose={closeAllPopups}
+      >
         {" "}
       </PopupWithForm>
 
