@@ -3,9 +3,13 @@ import api from "../utils/Api.js";
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
   const [userAvatar, setUserAvatar] = React.useState("");
+  const [userName, setUserName] = React.useState("");
+  const [userDescription, setUserDescription] = React.useState("");
   React.useEffect(() => {
     api.getUserInfo().then((res) => {
       setUserAvatar(res.avatar);
+      setUserName(res.name);
+      setUserDescription(res.about);
     });
   });
 
@@ -24,14 +28,14 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
           ></button>
           <div className="profile__info">
             <div className="profile__info-container">
-              <h1 className="profile__info-name">Жак Кусто</h1>
+              <h1 className="profile__info-name">{userName}</h1>
               <button
                 type="button"
                 className="profile__avatar-edit-button"
                 onClick={() => onEditProfile(true)}
               ></button>
             </div>
-            <p className="profile__info-occupation">Мореплаватель</p>
+            <p className="profile__info-occupation">{userDescription}</p>
           </div>
         </div>
         <button
