@@ -1,7 +1,15 @@
-function Card({ data }) {
+function Card({ data, onCardClick }) {
+  function handleClick() {
+    onCardClick(data);
+  }
   return (
-    <li className="gallery__element" key={data.id}>
-      <img src={data.link} className="gallery__element-image" alt={data.name} />
+    <li className="gallery__element">
+      <img
+        src={data.link}
+        className="gallery__element-image"
+        alt={data.name}
+        onClick={handleClick}
+      />
       <div className="gallery__element-description">
         <h2 className="gallery__element-title">{data.name}</h2>
         <div className="gallery__element-like-container">

@@ -10,11 +10,12 @@ function App() {
   const [isEditProfilePopupOpen, handleEditProfileClick] =
     React.useState(false);
   const [isAddPlacePopupOpen, handleAddPlaceClick] = React.useState(false);
-  //const [selectedCard, handleCardClick] = React.useState();
+  const [selectedCard, handleCardClick] = React.useState({});
   const closeAllPopups = () => {
     handleEditAvatarClick(false);
     handleEditProfileClick(false);
     handleAddPlaceClick(false);
+    handleCardClick({});
   };
 
   return (
@@ -24,6 +25,7 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
       <PopupWithForm
@@ -108,24 +110,7 @@ function App() {
         {" "}
       </PopupWithForm>
 
-      <PopupWithImage />
-
-      <template className="template-elements">
-        <li className="gallery__element">
-          <img src="#" className="gallery__element-image" alt="" />
-          <div className="gallery__element-description">
-            <h2 className="gallery__element-title"></h2>
-            <div className="gallery__element-like-container">
-              <button
-                type="button"
-                className="gallery__element-like gallery__element-like"
-              ></button>
-              <div className="gallery__element-like-counter"></div>
-            </div>
-          </div>
-          <button type="button" className="gallery__element-delete"></button>
-        </li>
-      </template>
+      <PopupWithImage card={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }
