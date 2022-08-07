@@ -1,5 +1,6 @@
 import React from "react";
 import api from "../utils/Api.js";
+import Card from "./Card.js";
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
   const [userAvatar, setUserAvatar] = React.useState("");
@@ -53,29 +54,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
       <div className="gallery">
         <ul className="gallery__elements">
           {cards.map((item, i) => (
-            <li className="gallery__element" key={i}>
-              <img
-                src={item.link}
-                className="gallery__element-image"
-                alt={item.name}
-              />
-              <div className="gallery__element-description">
-                <h2 className="gallery__element-title">{item.name}</h2>
-                <div className="gallery__element-like-container">
-                  <button
-                    type="button"
-                    className="gallery__element-like gallery__element-like"
-                  ></button>
-                  <div className="gallery__element-like-counter">
-                    {item.likes.length}
-                  </div>
-                </div>
-              </div>
-              <button
-                type="button"
-                className="gallery__element-delete"
-              ></button>
-            </li>
+            <Card data={item} />
           ))}
         </ul>
       </div>

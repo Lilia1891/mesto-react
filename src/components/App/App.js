@@ -10,6 +10,7 @@ function App() {
   const [isEditProfilePopupOpen, handleEditProfileClick] =
     React.useState(false);
   const [isAddPlacePopupOpen, handleAddPlaceClick] = React.useState(false);
+  //const [selectedCard, handleCardClick] = React.useState();
   const closeAllPopups = () => {
     handleEditAvatarClick(false);
     handleEditProfileClick(false);
