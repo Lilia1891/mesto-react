@@ -31,7 +31,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
           <button
             className="profile__avatar-change"
             onClick={() => onEditAvatar(true)}
-          ></button>
+          />
           <div className="profile__info">
             <div className="profile__info-container">
               <h1 className="profile__info-name">{userName}</h1>
@@ -39,7 +39,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                 type="button"
                 className="profile__avatar-edit-button"
                 onClick={() => onEditProfile(true)}
-              ></button>
+              />
             </div>
             <p className="profile__info-occupation">{userDescription}</p>
           </div>
@@ -48,12 +48,12 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
           type="button"
           className="profile__info-add-button"
           onClick={() => onAddPlace(true)}
-        ></button>
+        />
       </div>
       <div className="gallery">
         <ul className="gallery__elements">
-          {cards.map((item, i) => (
-            <Card data={item} key={i} onCardClick={onCardClick} />
+          {cards.map((item, id) => (
+            <Card data={item} key={id} onCardClick={onCardClick} />
           ))}
         </ul>
       </div>
