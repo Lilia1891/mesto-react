@@ -28,17 +28,14 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
             alt="Аватар профиля"
             className="profile__avatar"
           />
-          <button
-            className="profile__avatar-change"
-            onClick={() => onEditAvatar(true)}
-          />
+          <button className="profile__avatar-change" onClick={onEditAvatar} />
           <div className="profile__info">
             <div className="profile__info-container">
               <h1 className="profile__info-name">{userName}</h1>
               <button
                 type="button"
                 className="profile__avatar-edit-button"
-                onClick={() => onEditProfile(true)}
+                onClick={onEditProfile}
               />
             </div>
             <p className="profile__info-occupation">{userDescription}</p>
@@ -47,7 +44,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         <button
           type="button"
           className="profile__info-add-button"
-          onClick={() => onAddPlace(true)}
+          onClick={onAddPlace}
         />
       </div>
       <div className="gallery">

@@ -17,16 +17,28 @@ function App() {
     handleAddPlaceClick(false);
     handleCardClick({});
   };
+  const onEditAvatar = () => {
+    handleEditAvatarClick(true);
+  };
+  const onEditProfile = () => {
+    handleEditProfileClick(true);
+  };
+  const onAddPlace = () => {
+    handleAddPlaceClick(true);
+  };
+  const onCardClick = (data) => {
+    handleCardClick(data);
+  };
 
   return (
     <div className="page">
       <div className="page__container">
         <Header />
         <Main
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onCardClick={handleCardClick}
+          onEditProfile={onEditProfile}
+          onAddPlace={onAddPlace}
+          onEditAvatar={onEditAvatar}
+          onCardClick={onCardClick}
         />
         <Footer />
         <PopupWithForm
