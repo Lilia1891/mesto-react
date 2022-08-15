@@ -4,6 +4,7 @@ import Footer from "../../components/Footer.js";
 import Main from "../../components/Main.js";
 import PopupWithForm from "../../components/PopupWithForm.js";
 import ImagePopup from "../../components/ImagePopup.js";
+import api from "../../utils/Api.js";
 
 function App() {
   const [isEditAvatarPopupOpen, handleEditAvatarClick] = React.useState(false);
@@ -11,6 +12,14 @@ function App() {
     React.useState(false);
   const [isAddPlacePopupOpen, handleAddPlaceClick] = React.useState(false);
   const [selectedCard, handleCardClick] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({});
+
+  React.useEffect(() => {
+    api.getUserInfo().then((res) => {
+      setCurrentUser(res);
+    });
+  }, []);
+
   const closeAllPopups = () => {
     handleEditAvatarClick(false);
     handleEditProfileClick(false);
