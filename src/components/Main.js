@@ -11,6 +11,18 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   const [userDescription, setUserDescription] = React.useState("");*/
   const [cards, setCards] = React.useState([]);
 
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    console.log(isLiked);
+
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.toggleLike(card._id, isLiked).then((newCard) => {
+      console.log(newCard);
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
+
   React.useEffect(() => {
     /*api.getUserInfo().then((res) => {
       setUserAvatar(res.avatar);
@@ -53,7 +65,12 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       <div className="gallery">
         <ul className="gallery__elements">
           {cards.map((item, id) => (
-            <Card data={item} key={id} onCardClick={onCardClick} />
+            <Card
+              data={item}
+              key={id}
+              onCardClick={onCardClick}
+              onCardLike={handleCardLike}
+            />
           ))}
         </ul>
       </div>
