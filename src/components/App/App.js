@@ -6,6 +6,7 @@ import PopupWithForm from "../../components/PopupWithForm.js";
 import ImagePopup from "../../components/ImagePopup.js";
 import api from "../../utils/Api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import EditProfilePopup from "../EditProfilePopup.js";
 
 function App() {
   const [isEditAvatarPopupOpen, handleEditAvatarClick] = React.useState(false);
@@ -68,36 +69,10 @@ function App() {
             />
             <span className="popup__input-error popup__input-error_avatar"></span>
           </PopupWithForm>
-          <PopupWithForm
-            name="profile"
-            title="Редактировать профиль"
+          <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
-          >
-            <input
-              className="popup__input popup__input_type_name"
-              type="text"
-              name="title"
-              id="input-name"
-              placeholder="Имя"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="popup__input-error popup__input-error_title"></span>
-
-            <input
-              className="popup__input popup__input_type_job"
-              type="text"
-              name="job"
-              id="input-job"
-              placeholder="Вид деятельности"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span className="popup__input-error popup__input-error_job"></span>
-          </PopupWithForm>
+          />
           <PopupWithForm
             name="add-card"
             title="Новое место"
