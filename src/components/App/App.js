@@ -40,6 +40,12 @@ function App() {
   const onCardClick = (data) => {
     handleCardClick(data);
   };
+  const handleUpdateUser = (data) => {
+    api.editProfile(data).then((res) => {
+      setCurrentUser(res);
+      closeAllPopups();
+    });
+  };
 
   return (
     <div className="page">
@@ -72,6 +78,7 @@ function App() {
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser}
           />
           <PopupWithForm
             name="add-card"

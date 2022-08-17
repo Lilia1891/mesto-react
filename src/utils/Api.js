@@ -28,8 +28,8 @@ export class Api {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
-        name: data.title,
-        about: data.job,
+        name: data.name,
+        about: data.about,
       }),
     }).then(this._getResponseData);
   }

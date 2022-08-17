@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
+import { CurrentUserContext } from "./contexts/CurrentUserContext";
 
-export default function EditProfilePopup({ isOpen, onClose }) {
-  const [values, setValues] = useState({ title: "", job: "" });
+export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+  const [values, setValues] = useState({});
   const onChange = (e) => {
     setValues((values) => ({ ...values, [e.target.name]: e.target.value }));
   };
+  const currentUser = React.useContext(CurrentUserContext);
+  React.useEffect(() => {
+    setValues(currentUser);
+  }, [currentUser]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateUser({
+      name: values.name,
+      about: values.about,
+    });
+  }
 
   return (
     <PopupWithForm
@@ -13,33 +26,32 @@ export default function EditProfilePopup({ isOpen, onClose }) {
       title="Редактировать профиль"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <input
         className="popup__input popup__input_type_name"
         type="text"
-        name="title"
-        value={values.title}
-        id="input-name"
+        name="name"
+        value={values.name || ""}
         placeholder="Имя"
         minLength="2"
         maxLength="40"
         required
         onChange={onChange}
       />
-      <span className="popup__input-error popup__input-error_title"></span>
+      <span className="popup__input-error popup__input-error_name"></span>
       <input
         className="popup__input popup__input_type_job"
         type="text"
-        name="job"
-        value={values.job}
-        id="input-job"
+        name="about"
+        value={values.about || ""}
         placeholder="Вид деятельности"
         minLength="2"
         maxLength="200"
         required
         onChange={onChange}
       />
-      <span className="popup__input-error popup__input-error_job"></span>
+      <span className="popup__input-error popup__input-error_about"></span>
     </PopupWithForm>
   );
 }
