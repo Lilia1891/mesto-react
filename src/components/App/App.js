@@ -7,6 +7,7 @@ import ImagePopup from "../../components/ImagePopup.js";
 import api from "../../utils/Api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "../EditProfilePopup.js";
+import EditAvatarPopup from "../EditAvatarPopup.js";
 
 function App() {
   const [isEditAvatarPopupOpen, handleEditAvatarClick] = React.useState(false);
@@ -46,6 +47,12 @@ function App() {
       closeAllPopups();
     });
   };
+  const handleUpdateAvatar = (item) => {
+    api.changeAvatar(item).then((res) => {
+      setCurrentUser(res);
+      closeAllPopups();
+    });
+  };
 
   return (
     <div className="page">
@@ -59,22 +66,11 @@ function App() {
             onCardClick={onCardClick}
           />
           <Footer />
-          <PopupWithForm
-            name="avatar"
-            title="Обновить аватар"
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-          >
-            <input
-              type="url"
-              name="avatar"
-              id="avatar"
-              placeholder="Ссылка на картинку"
-              className="popup__input"
-              required
-            />
-            <span className="popup__input-error popup__input-error_avatar"></span>
-          </PopupWithForm>
+            onUpdateAvatar={handleUpdateAvatar}
+          />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
