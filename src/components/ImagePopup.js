@@ -2,7 +2,7 @@ function ImagePopup({ card, onClose }) {
   return (
     <div
       className={`popup popup_view-image popup_dark ${
-        card.link ? "popup_opened" : ""
+        card.link && "popup_opened"
       }`}
     >
       <figure className="popup__figure">
