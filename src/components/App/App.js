@@ -17,17 +17,7 @@ function App() {
   const [isAddPlacePopupOpen, handleAddPlaceClick] = useState(false);
   const [selectedCard, handleCardClick] = useState({});
   const [currentUser, setCurrentUser] = useState({});
-
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        setCurrentUser(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const [cards, setCards] = useState([]);
 
   const closeAllPopups = () => {
     handleEditAvatarClick(false);
@@ -71,8 +61,6 @@ function App() {
       });
   };
 
-  const [cards, setCards] = useState([]);
-
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
@@ -112,6 +100,15 @@ function App() {
   }
 
   useEffect(() => {
+    api
+      .getUserInfo()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     api
       .getInitialCards()
       .then((res) => {
