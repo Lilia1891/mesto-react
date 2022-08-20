@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header.js";
 import Footer from "../../components/Footer.js";
 import Main from "../../components/Main.js";
@@ -11,14 +12,13 @@ import EditAvatarPopup from "../EditAvatarPopup.js";
 import AddPlacePopup from "../AddPlacePopup.js";
 
 function App() {
-  const [isEditAvatarPopupOpen, handleEditAvatarClick] = React.useState(false);
-  const [isEditProfilePopupOpen, handleEditProfileClick] =
-    React.useState(false);
-  const [isAddPlacePopupOpen, handleAddPlaceClick] = React.useState(false);
-  const [selectedCard, handleCardClick] = React.useState({});
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [isEditAvatarPopupOpen, handleEditAvatarClick] = useState(false);
+  const [isEditProfilePopupOpen, handleEditProfileClick] = useState(false);
+  const [isAddPlacePopupOpen, handleAddPlaceClick] = useState(false);
+  const [selectedCard, handleCardClick] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getUserInfo().then((res) => {
       setCurrentUser(res);
     });
@@ -55,7 +55,7 @@ function App() {
     });
   };
 
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = useState([]);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -78,7 +78,7 @@ function App() {
     });
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     api.getInitialCards().then((res) => {
       setCards(res);
     });
